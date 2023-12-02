@@ -45,3 +45,12 @@ jobs:
     - name: Poetry test
       run: |
         poetry run task test
+    - name: Poetry test
+      run: |
+        poetry run task lint
+    - name: Poetry test
+      run: |
+        poetry run task formatter
+    - name: Poetry test
+      run: |
+        poetry run task security
