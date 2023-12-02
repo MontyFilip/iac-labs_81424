@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  job1:
 
     runs-on: ubuntu-latest
 
@@ -40,8 +40,15 @@ jobs:
       run: |
         poetry install --no-root
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    
+
         
+  job2:
+    runs-on: ubuntu-latest
+
+    defaults:
+        run:
+          working-directory: ./example-app
+    steps:
     - name: Poetry test
       run: |
         poetry run task test
