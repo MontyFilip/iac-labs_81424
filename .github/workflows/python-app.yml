@@ -17,7 +17,7 @@ jobs:
     defaults:
       run:
         working-directory: ./example-app
-
+    
     steps:
         
     - uses: actions/checkout@v3
@@ -40,7 +40,12 @@ jobs:
       run: |
         poetry install --no-root
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
+    - name: Cache build venv
+      id: cached-poetry-dependencies
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/work/<path>/example-app/.venv
+        key: ${{ runner.os }}-venv
         
   job2:
     runs-on: ubuntu-latest
@@ -48,6 +53,7 @@ jobs:
     defaults:
         run:
           working-directory: ./example-app
+    needs: job1
     steps:
     - name: Poetry test
       run: |
