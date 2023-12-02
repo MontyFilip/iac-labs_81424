@@ -45,4 +45,4 @@ steps:
     
 - name: Poetry test
     run: |
-      poetry run tast test
+      poetry run task test
